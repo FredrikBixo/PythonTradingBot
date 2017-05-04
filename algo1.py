@@ -1,1 +1,1 @@
-
+// volume + rsi + insider activity??
