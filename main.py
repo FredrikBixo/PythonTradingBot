@@ -2,6 +2,8 @@ from yahoo_finance import Share
 
 yahoo = Share('GOOG')
 
+
+
 def rater():
     rate = 0
     if (float(yahoo.get_price_earnings_ratio()) < 10):
@@ -19,5 +21,6 @@ pprint(yahoo.get_price_earnings_ratio())
 pprint(yahoo.get_price_book())
 pprint(yahoo.get_50day_moving_avg())
 pprint(yahoo.get_200day_moving_avg())
+pprint(yahoo.get_historical('2014-04-25', '2014-04-29'))
 
 rater()
