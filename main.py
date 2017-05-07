@@ -18,7 +18,7 @@ def rater():
             print("{} and {}".format(ticker, rate))
 
         except: 
-            print("error")
+            print("Could not fetch data")
         else:
             None 
     
