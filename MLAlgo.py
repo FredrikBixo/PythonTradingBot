@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPRegressor
 
 # For example we could use data P/B ratio and P/E as fatures ratio in order to predict the market cap
 
-# Should me normalised in order
+# Should me normalised with Gaussian normalization for example
 
 PBaapl = 1
 PEaapl = 1;
