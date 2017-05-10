@@ -1,3 +1,5 @@
+# This statistical model works just like a linear regression; i.e. provide the best function F from a set of data points [(x1,y1),(x1,y1)] in order to predict other points in the specified domain. 
+
 from sklearn.neural_network import MLPRegressor
 
 # Each array in the array corrspond to a training example. The elements inside each array inside the array are features
