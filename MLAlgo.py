@@ -1,4 +1,4 @@
-# This statistical model works just like a linear regression; i.e. provide the best function F from a set of data points [(x1,y1),(x1,y1)] in order to predict other points on a continious intervall. 
+# This statistical model works just like a linear regression; i.e. provide the best function F from a set of data points [(x1,y1),(x1,y1)] in order to predict other points on a continious intervall. Except that it uses a "neural network" as the function
 
 from sklearn.neural_network import MLPRegressor
 
