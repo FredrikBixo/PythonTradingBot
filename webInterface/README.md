@@ -19,9 +19,9 @@ node_modules/.bin/http-server src/static
 
 Run express server with:
 ```
-NODE_ENV=production BUILD_TARGET=server SERVICE_URL=http://localhost:3000/ MYSQL_PASS=Supermeio2000! node_modules/.bin/babel-node --presets react,es2015,stage-0 src/server.js
+NODE_ENV=production BUILD_TARGET=server SERVICE_URL=http://localhost:3000/ MYSQL_PASS=PASSWORD node_modules/.bin/babel-node --presets react,es2015,stage-0 src/server.js
 ```
 
 ```
-NODE_ENV=development BUILD_TARGET=server SERVICE_URL=http://localhost:3000/ MYSQL_PASS=Supermeio2000! node_modules/.bin/babel-node --presets react,es2015,stage-0 src/server.js
+NODE_ENV=development BUILD_TARGET=server SERVICE_URL=http://localhost:3000/ MYSQL_PASS=PASSWORD node_modules/.bin/babel-node --presets react,es2015,stage-0 src/server.js
 ```
