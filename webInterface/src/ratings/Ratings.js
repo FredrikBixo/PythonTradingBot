@@ -22,7 +22,7 @@ export default class Deliveries extends React.Component{
     render(){
         return (
             <div className="main deliveriesMain">
-
+                
             </div>
         );
     }
