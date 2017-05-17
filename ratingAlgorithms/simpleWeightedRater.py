@@ -5,12 +5,18 @@ def simpleWeightedRater(symbol):
     try:
         share = Share(symbol)
         rate = 0
-        if (share.get_price_earnings_ratio() < 100):
-            rate += 1
-        if (share.get_price_book()<1 or share.get_price_book() < share.get_price_earnings_ratio()):
-            rate += 1
-        if (share.get_50day_moving_avg() < share.get_200day_moving_avg()):
-            rate += 1
+            if (share.get_price_earnings_ratio() < 10):
+                rate += 3
+            if (share.get_price_book() < 0.70):
+                rate += 3
+            if (share.get_50day_moving_avg() > share.get_200day_moving_avg()):
+                rate += 1
+            if (share.get_price_EPS_estimate_current_year() < share.get_price_EPS_estimate_next_year()):
+                rate += 2
+            if (share.get_one_yr_target_price() > share.get_price()):
+                rate += 1
+            if (share.get_dividend_yield() > 0.04):
+                rate += 1
         return rate
 
     except:
