@@ -1,6 +1,6 @@
 import React from "react";
 import {render} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 if(process.env.BUILD_TARGET == "browser"){
     require("./styles.scss");
@@ -16,8 +16,20 @@ export default class Deliveries extends React.Component{
         return (
             <div className="header">
                 <ul>
-                    <li><Link to="/stocks/">Stocks</Link></li>
-                    <li><Link to="/ratings/">Ratings</Link></li>
+                    <Route path="/stocks" children={({match}) => {
+                        return (
+                            <li><Link to="/stocks" className={match ? "active" : ""}>
+                                Stocks
+                            </Link></li>
+                        );
+                    }}/>
+                    <Route path="/ratings" children={({match}) => {
+                        return (
+                            <li><Link to="/ratings" className={match ? "active" : ""}>
+                                Ratings
+                            </Link></li>
+                        );
+                    }}/>
                 </ul>
             </div>
         );

@@ -1,7 +1,7 @@
 import React from "react";
 import {render} from "react-redux";
 import fetch from "isomorphic-fetch";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 if(process.env.BUILD_TARGET == "browser"){
     require("./styles.scss");
@@ -33,7 +33,10 @@ export default class StockList extends React.Component{
     render(){
         return (
             <div className="stockList">
-                {this.state.isFetching ? (<div className="spinner"></div>) : this.getStockList()}
+                {this.state.isFetching ? (<div className="spinner">
+                        <div className="double-bounce1"></div>
+                        <div className="double-bounce2"></div>
+                    </div>) : this.getStockList()}
             </div>
         );
     }
@@ -72,10 +75,14 @@ export default class StockList extends React.Component{
         return (<ul>
             {this.state.stocks.map((stock, index) => {
                 return <li key={"stockListing" + index}>
-                    <Link to={"/stocks/" + stock.stockId}>
-                        <span className="stockSymbol">{stock.stockSymbol}</span>
-                        <span className="stockName">{stock.stockName}</span>
-                    </Link>
+                    <Route exact path={"/stocks/" + stock.stockId} children={({match}) => {
+                        return (
+                            <Link to={"/stocks/" + stock.stockId} className={match ? "active" : ""}>
+                                <span className="stockSymbol">{stock.stockSymbol}</span>
+                                <span className="stockName">{stock.stockName}</span>
+                            </Link>
+                        );
+                    }}/>
                 </li>;
             })}
         </ul>);

@@ -40,7 +40,9 @@ function getStocks(req, res, next, connection){
  */
 function getIndividualStock(req, res, next, connection){
     let queryString = "SELECT * FROM algorithms; \
-        SELECT * FROM stocks WHERE stockId = " + connection.escape(parseInt(req.body.stockId)) + "; \
+        SELECT * FROM stocks \
+        INNER JOIN markets on markets.marketId = stocks.marketId \
+        WHERE stockId = " + connection.escape(parseInt(req.body.stockId)) + "; \
         SELECT * FROM ratings WHERE stockId = " +
          connection.escape(parseInt(req.body.stockId)) +
          " ORDER BY ratingComputed DESC;";

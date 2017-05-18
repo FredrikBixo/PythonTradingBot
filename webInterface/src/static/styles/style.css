@@ -1,5 +1,32 @@
 .header {
-  background-color: #555;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #333;
+  height: 120px;
+}
+
+.header > ul {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+}
+
+.header > ul > li {
+  display: inline-block;
+  margin: 0 24px;
+}
+
+.header > ul > li > a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.header > ul > li > a.active {
+  color: #fff;
 }
 
 .stockList {
@@ -7,16 +34,92 @@
   flex-shrink: 0;
   width: 240px;
   height: 100%;
+  background-color: #fff;
+}
+
+.stockList > ul > li > a {
+  display: block;
+  width: auto;
+  height: 40px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.stockList > ul > li > a > span {
+  display: block;
+}
+
+.stockList > ul > li > a > .stockSymbol {
+  font-size: 18px;
+}
+
+.stockList > ul > li > a > .stockName {
+  font-size: 14px;
+}
+
+.stockList > ul > li > a.active {
+  background-color: #f90;
+  color: #fff;
 }
 
 .stock {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stock > .stockInfo {
+  flex-grow: 1;
+}
+
+.stock > .stockInfo > h1 {
+  margin: 48px 48px 4px 48px;
+}
+
+.stock > .stockInfo > h3 {
+  margin: 0 48px 4px 48px;
+  font-size: 20px;
+}
+
+.stock > .stockInfo > .marketName {
+  margin: 0px 48px 24px 48px;
+  font-size: 14px;
+}
+
+.stock > .stockInfo > h4 {
+  margin: 48px 48px 12px 48px;
+  font-size: 20px;
+}
+
+.stock > .stockInfo > .latestRatings {
+  margin: 0 48px;
+}
+
+.stock > .stockInfo > .latestRatings > .latestRating {
+  display: inline-block;
+  width: 100px;
+}
+
+.stock > .stockInfo > .latestRatings > .latestRating > .scoreBox {
+  width: 56px;
+  height: 48px;
+  margin: 12px auto;
+  padding-top: 8px;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+
+.stock > .stockInfo > .latestRatings > .latestRating > .algorithmName {
+  font-size: 12px;
+  text-align: center;
 }
 
 .stock > #graphCanvas {
-  width: 400px;
-  height: 200px;
-  border: 1px solid #000;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: #999;
 }
 
 .stocksMain {
@@ -157,10 +260,76 @@ table {
 }
 
 body {
-  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(0, 0, 0, 0.87);
 }
 
-.main {
+h1 {
+  font-size: 72px;
+}
+
+html,
+body,
+#app,
+.routes {
   height: 100%;
+  background-color: #e9e9e9;
+}
+
+.routes {
+  display: flex;
+  flex-direction: column;
+}
+
+.routes > .main {
+  flex-grow: 1;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.spinner > .double-bounce1,
+.spinner > .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #f90;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.spinner .double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
 

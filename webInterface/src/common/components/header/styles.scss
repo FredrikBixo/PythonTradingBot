@@ -1,13 +1,23 @@
 .header {
+    flex-grow: 0; flex-shrink: 0;
     position: relative;
-    background-color: #555;
-    height: 200px;
+    background-color: #333;
+    height: 120px;
 
     > ul {
-        position: absolute:
+        position: absolute; bottom: 24px; left: 24px;
         > li {
             display: inline-block;
             margin: 0 24px;
+
+            > a {
+                color: #aaa; text-decoration: none; font-size: 20px;
+                letter-spacing: 2px; text-transform: uppercase;
+
+                &.active {
+                    color: #fff;
+                }
+            }
         }
     }
 }

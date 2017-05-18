@@ -2,6 +2,7 @@ import React from "react";
 import {render} from "react-redux";
 import fetch from "isomorphic-fetch";
 import {Link} from "react-router-dom";
+import LineChart from "react-linechart";
 
 if(process.env.BUILD_TARGET == "browser"){
     require("./styles.scss");
@@ -41,8 +42,11 @@ export default class Stock extends React.Component{
     render(){
         return (
             <div className="stock">
-                {this.state.isFetching ? (<div className="spinner"></div>) : this.getStockInfo()}
-                <canvas id="graphCanvas"></canvas>
+                {this.state.isFetching ? (<div className="spinner">
+                        <div className="double-bounce1"></div>
+                        <div className="double-bounce2"></div>
+                    </div>) : this.getStockInfo()}
+                <canvas id="graphCanvas" width={300} height={400}></canvas>
             </div>
         );
     }
@@ -83,7 +87,9 @@ export default class Stock extends React.Component{
             tempAlgorithms[i].color = this.getRandomColor();
 
         }
-        this.setState({algorithms: tempAlgorithms}, () => {this.drawCanvas()});
+        this.setState({algorithms: tempAlgorithms}, () => {
+            this.drawCanvas()
+        });
     }
 
     /**
@@ -92,13 +98,33 @@ export default class Stock extends React.Component{
     drawCanvas(){
         let canvas = document.getElementById("graphCanvas");
         let context = canvas.getContext("2d");
-        let width = canvas.width;
-        let height = canvas.height;
-        context.clearRect(0, 0, width, height);
+        let width = canvas.offsetWidth;
+        let height = canvas.offsetHeight;
+        context.fillStyle="#999";
+        context.fillRect(0, 0, width, height);
 
         let latestTime = new Date(this.state.ratings[0].ratingComputed).getTime();
         let firstTime = new Date(this.state.ratings[this.state.ratings.length - 1].ratingComputed).getTime();
-        console.log(firstTime);
+        /*context.beginPath();
+        context.moveTo(100, 0);
+        context.lineTo(100, 200);
+        context.strokeStyle = "#f00";
+        context.stroke();*/
+        //Draw daymarkers
+        /*let numberOfDays = Math.floor((latestTime - firstTime) / 86400);
+        console.log(context);
+        for(let i = 0; i < numberOfDays; ++i){
+            let x = (width / (numberOfDays + 1)) * (i + 1);
+            context.beginPath();
+
+            context.moveTo(x, 0);
+            context.lineTo(x, height);
+            context.lineWidth=1;
+            context.strokeStyle = "#fff";
+            context.stroke();
+        }*/
+
+        //Draw graphs
         this.state.algorithms.map((algorithm, algorithmIndex) => {
 
 
@@ -107,7 +133,6 @@ export default class Stock extends React.Component{
             this.state.ratings.map((rating, ratingIndex) => {
                 let x = (new Date(rating.ratingComputed).getTime() - firstTime) * width / (latestTime - firstTime);
                 let y = height - ((rating.ratingScore - algorithm.algorithmLowestScore) * height / (algorithm.algorithmHighestScore - algorithm.algorithmLowestScore));
-                console.log(rating, "X", x, "Y", y);
                 if(rating.algorithmId = algorithm.algorithmId){
                     if(initialPoint){
                         context.moveTo(x, y);
@@ -137,9 +162,12 @@ export default class Stock extends React.Component{
      * Returns a list of all stocks
      */
     getStockInfo(){
+        console.log("STOCK", this.state.stock);
         return (<div className="stockInfo">
             <h1>{this.state.stock.stockSymbol}</h1>
             <h3>{this.state.stock.stockName}</h3>
+            <span className="marketName">{this.state.stock.marketName}</span>
+            <h4>Latest daily ratings</h4>
             {this.getLatestRatings()}
         </div>);
     }

@@ -1,4 +1,31 @@
+@import "../../common/styles/base/colors";
 .stockList {
     flex-grow: 0; flex-shrink: 0;
     width: 240px; height: 100%;
+    background-color: #fff;
+
+    > ul {
+        > li {
+            > a {
+                display: block; width: auto; height: 40px;
+                padding: 8px 12px;
+                text-decoration: none; color: $darkText;
+
+                > span {
+                    display: block;
+                }
+                > .stockSymbol {
+                    font-size: 18px;
+                }
+                > .stockName {
+                    font-size: 14px;
+                }
+                &.active {
+                    background-color: $primaryOrange;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
 }
