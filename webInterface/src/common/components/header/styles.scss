@@ -1,0 +1,13 @@
+.header {
+    position: relative;
+    background-color: #555;
+    height: 200px;
+
+    > ul {
+        position: absolute:
+        > li {
+            display: inline-block;
+            margin: 0 24px;
+        }
+    }
+}

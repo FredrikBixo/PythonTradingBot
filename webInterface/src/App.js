@@ -11,12 +11,16 @@ if(process.env.BUILD_TARGET == "browser"){
 }
 
 
+import Header from "./common/components/header/Header";
+import Stocks from "./stocks/Stocks";
+
 
 export default class App extends React.Component{
     render(){
         return (
             <div className="routes">
-                
+                <Header />
+                <Route exact path="/stocks/:stockId?" component={Stocks} />
             </div>
         );
     }

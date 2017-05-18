@@ -1,3 +1,4 @@
+import isomorphic-fetch;
 import React from "react";
 import {render} from "react-redux";
 
@@ -22,7 +23,7 @@ export default class Deliveries extends React.Component{
     render(){
         return (
             <div className="main deliveriesMain">
-                
+
             </div>
         );
     }
